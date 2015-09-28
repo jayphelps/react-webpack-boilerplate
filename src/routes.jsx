@@ -1,15 +1,15 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import { createHistory } from 'history';
-import ApplicationPage from './components/pages/ApplicationPage/ApplicationPage';
-import IndexPage from './components/pages/IndexPage/IndexPage';
-import AboutPage from './components/pages/AboutPage/AboutPage';
+import Application from './components/routes/application';
+import Index from './components/routes/index';
+import About from './components/routes/about';
 
 export default (
   <Router history={createHistory()}>
-    <Route path="/" component={ApplicationPage} >
-      <IndexRoute component={IndexPage} />
-      <Route path="about" component={AboutPage}/>
+    <Route path="/" component={Application}>
+      <IndexRoute component={Index} />
+      <Route path="about" component={About} />
     </Route>
   </Router>
 );

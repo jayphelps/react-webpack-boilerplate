@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import applyStyles from 'react-css-modules';
-import styles from './ApplicationPage.less';
+import styles from './style.less';
 import { Link } from 'react-router';
 
 export default

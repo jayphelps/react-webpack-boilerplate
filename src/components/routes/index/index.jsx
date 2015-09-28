@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import applyStyles from 'react-css-modules';
-import styles from './IndexPage.less';
+import styles from './style.less';
 import { autobind } from 'core-decorators';
 
 export default
