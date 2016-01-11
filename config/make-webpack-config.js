@@ -3,7 +3,9 @@ const webpack = require('webpack');
 const Clean = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const ComponentResolverPlugin = require('component-resolver-webpack');
+const failPlugin = require('webpack-fail-plugin');
+const packageJSON = require('../package.json');
 const base = path.join(__dirname, '../');
 const src = path.join(base, 'src');
 const dist = path.join(base, 'dist');
@@ -11,8 +13,6 @@ const test = path.join(base, 'test');
 
 module.exports = function (options) {
   options = options || {};
-
-  console.log(require.resolve('react/addons'));
 
   const config = {
     module: {
@@ -22,7 +22,7 @@ module.exports = function (options) {
         include: src
       }, {
         test: /\.(css|less)$/,
-        loader: 'style!css!less'
+        loader: 'style!css!less?strictMath'
       }, {
         test: /\.(png|jpg|woff2|woff|eot|ttf|svg)$/,
         loader: 'file?name=assets/[name]-[hash].[ext]'
@@ -37,8 +37,9 @@ module.exports = function (options) {
     },
     resolve: {
       alias: {
-        etui: src,
-        react: require.resolve('react/addons'),
+        'react': require.resolve('react'),
+        'react-dom': require.resolve('react/lib/ReactDOM'),
+        'react-addons-test-utils': require.resolve('react/lib/ReactTestUtils'),
         'react-router': require.resolve('jayphelps-react-router')
       },
       extensions: ['', '.js', '.jsx', '.json'],
@@ -46,19 +47,30 @@ module.exports = function (options) {
     plugins: [
       new webpack.PrefetchPlugin('react'),
       new webpack.PrefetchPlugin('jayphelps-react-router'),
-      new webpack.PrefetchPlugin('react-css-modules')
+      new webpack.PrefetchPlugin('react-css-modules'),
+      new webpack.ResolverPlugin([
+        new ComponentResolverPlugin(['jsx', 'js', 'less', 'css'])
+      ]),
+      failPlugin
     ]
   };
+
+  config.resolve.alias[packageJSON.name] = src;
 
   if (!options.test) {
     config.entry = {
       app: src + '/index.jsx'
     };
-
     config.output = {
       path: dist,
       publicPath: '/',
       filename: 'assets/bundle-[hash].js'
+    };
+
+    config.worker = {
+      output: {
+        filename: 'assets/[hash].worker.js'
+      }
     };
 
     config.module.loaders.push({
@@ -68,7 +80,6 @@ module.exports = function (options) {
     });
 
     config.devServer = {
-      contentBase: dist,
       port: 7001,
       colors: true,
       noInfo: true,
@@ -83,9 +94,13 @@ module.exports = function (options) {
         hash: true,
         template: 'public/index.html',
         inject: 'body',
-        title: 'Edge Dev Tools'
+        title: 'React Webpack Boilerplate'
       })
     );
+  }
+
+  if (options.sourceMaps) {
+    config.devtool = 'source-map';
   }
 
   if (options.hotModuleReplacement) {

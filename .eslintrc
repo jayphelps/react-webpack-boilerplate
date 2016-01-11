@@ -8,7 +8,7 @@
     // specify the maximum cyclomatic complexity allowed in a program
     "complexity": [0, 11],
     // require return statements to either always or never specify values
-    "consistent-return": 2,
+    "consistent-return": 0,
     // specify curly brace conventions for all control statements
     "curly": [2, "multi-line"],
     // require default case in switch statements
@@ -23,12 +23,10 @@
     "eqeqeq": 2,
     // make sure for-in loops have an if statement
     "guard-for-in": 2,
-    // disallow using `var`. Must use `let` or `const`
-    "no-var": 2,
     // disabled use of an undefined variable
     "no-undef": 2,
     // disallow the use of console
-    "no-console": 1,
+    "no-console": 0,
     // disallow the use of alert, confirm, and prompt
     "no-alert": 0,
     // disallow use of arguments.caller or arguments.callee
@@ -102,6 +100,8 @@
     "no-throw-literal": 2,
     // disallow usage of expressions in statement position
     "no-unused-expressions": 2,
+    // disallow unused variables/imports
+    "no-unused-vars": [2, { "vars": "all", "args": "none" }],
     // disallow unnecessary .call() and .apply()
     "no-useless-call": 0,
     // disallow use of void operator
@@ -121,9 +121,8 @@
     "wrap-iife": [2, "any"],
     // require or disallow Yoda conditions
     "yoda": 2,
-
     // enforce spacing inside array brackets
-    "array-bracket-spacing": 0,
+    "array-bracket-spacing": 2,
     // enforce one true brace style
     "brace-style": [2, "1tbs", {
       "allowSingleLine": true
@@ -140,7 +139,7 @@
     // enforce one true comma style
     "comma-style": [2, "last"],
     // require or disallow padding inside computed properties
-    "computed-property-spacing": 0,
+    "computed-property-spacing": 2,
     // enforces consistent naming when capturing the current execution context
     "consistent-this": 0,
     // enforce newline at the end of file, with no multiple empty lines
@@ -152,7 +151,7 @@
     // this option enforces minimum and maximum identifier lengths (variable names, property names etc.)
     "id-length": 0,
     // this option sets a specific tab width for your code
-    "indent": [2, 2],
+    "indent": [2, 2, { "SwitchCase": 1 }],
     // enforces spacing between keys and values in object literal properties
     "key-spacing": [2, {
       "beforeColon": false,
@@ -161,7 +160,7 @@
     // enforces empty lines around comments
     "lines-around-comment": 0,
     // disallow mixed "LF" and "CRLF" as linebreaks
-    "linebreak-style": 0,
+    "linebreak-style": [2, "unix"],
     // specify the maximum depth callbacks can be nested
     "max-nested-callbacks": 0,
     // require a capital letter for constructors
@@ -169,7 +168,7 @@
       "newIsCap": true
     }],
     // disallow the omission of parentheses when invoking a constructor with no arguments
-    "new-parens": 0,
+    "new-parens": 2,
     // allow/disallow an empty newline after var statement
     "newline-after-var": 0,
     // disallow use of the Array constructor
@@ -181,7 +180,7 @@
     // disallow if as the only statement in an else block
     "no-lonely-if": 0,
     // disallow mixed spaces and tabs for indentation
-    "no-mixed-spaces-and-tabs": 0,
+    "no-mixed-spaces-and-tabs": 2,
     // disallow multiple empty lines
     "no-multiple-empty-lines": [2, {
       "max": 2
@@ -199,9 +198,9 @@
     // disallow dangling underscores in identifiers
     "no-underscore-dangle": 0,
     // disallow the use of Boolean literals in conditional expressions
-    "no-unneeded-ternary": 0,
+    "no-unneeded-ternary": 2,
     // require or disallow padding inside curly braces
-    "object-curly-spacing": 0,
+    "object-curly-spacing": [2, "always"],
     // allow just one var statement per function
     "one-var": [2, "never"],
     // require assignment operator shorthand where possible or prohibit it entirely
@@ -211,7 +210,7 @@
     // enforce padding within blocks
     "padded-blocks": [2, "never"],
     // require quotes around object literal property names
-    "quote-props": 0,
+    "quote-props": [2, "as-needed"],
     // specify whether double or single quotes should be used
     "quotes": [2, "single", "avoid-escape"],
     // require identifiers to match the provided regular expression
@@ -230,7 +229,7 @@
     // require or disallow space before blocks
     "space-before-blocks": 2,
     // require or disallow space before function opening parenthesis
-    "space-before-function-paren": [2, { "anonymous": "always", "named": "never" }],
+    "space-before-function-paren": [0, { "anonymous": "always", "named": "never" }],
     // require or disallow spaces inside parentheses
     "space-in-parens": 0,
     // require spaces around operators
@@ -238,12 +237,35 @@
     // require a space after return, throw, and case
     "space-return-throw-case": 2,
     // Require or disallow spaces before/after unary operators
-    "space-unary-ops": 0,
+    "space-unary-ops": 2,
+
+    /* ES6+ */
+    // disallow using `var`. Must use `let` or `const`
+    "no-var": 2,
+    "no-class-assign": 2,
+    "no-const-assign": 2,
+    "no-dupe-class-members": 2,
+    "no-this-before-super": 2,
+    "prefer-const": 0,
+    "prefer-spread": 2,
+    // require object literal shorthand
+    "object-shorthand": [2, "always"],
+    "arrow-spacing": 2,
+    "prefer-arrow-callback": 2,
+    "arrow-parens": [0, "as-needed"],
 
     /* REACT */
 
     // Enforce quote style for JSX attributes
     "jsx-quotes": [2, "prefer-double"],
+    // Validate props indentation in JSX
+    "react/jsx-indent-props": [2, 2],
+    // Forbid ambiguous propTypes (defaults to any/array/object)
+    "react/forbid-prop-types": 2,
+    // Enforce the closing bracket location for JSX multiline elements
+    "react/jsx-closing-bracket-location": 2,
+    // Prevent direct mutation of this.state
+    "react/no-direct-mutation-state": 2,
     // Enforce boolean attributes notation in JSX
     "react/jsx-boolean-value": 2,
     // Enforce or disallow spaces inside of curly braces in JSX attributes

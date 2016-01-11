@@ -1,9 +1,9 @@
-import React, { addons, findDOMNode } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 import createMemoryHistory from 'history/lib/createMemoryHistory'
 import { Router, Route } from 'react-router';
-import Application from 'etui/components/routes/application';
-
-const { TestUtils } = addons;
+import Application from '../../../../src/components/routes/application';
 
 describe('route - application', function () {
   function renderIntoRouter(Component) {
@@ -17,6 +17,6 @@ describe('route - application', function () {
   it('renders without error', function () {
     const application = renderIntoRouter(Application);
 
-    findDOMNode(application).firstChild.innerHTML.should.equal('App');
+    ReactDOM.findDOMNode(application).firstChild.innerHTML.should.equal('App');
   });
 });
