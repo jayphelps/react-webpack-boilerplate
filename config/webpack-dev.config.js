@@ -1,3 +1,4 @@
 module.exports = require('./make-webpack-config')({
-  hotModuleReplacement: true
+  hotModuleReplacement: true,
+  sourceMaps: true
 });
