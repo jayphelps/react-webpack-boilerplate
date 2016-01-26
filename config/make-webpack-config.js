@@ -29,6 +29,7 @@ module.exports = function (options) {
         loader: 'file?name=assets/[name]-[hash].[ext]'
       }, {
         test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'eslint',
         include: src
       }, {
