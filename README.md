@@ -1,5 +1,12 @@
 # react-webpack-boilerplate
 
+## Prerequisites
+You must have node and npm installed, then install the webpack development server:
+
+```bash
+$ npm install webpack-dev-server -g
+```
+
 ## Dev build + livereload webserver
 ```bash
 $ npm start
