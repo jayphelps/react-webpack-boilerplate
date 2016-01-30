@@ -1,4 +1,5 @@
-import React from 'react';
+import 'babel-core/polyfill';
+import ReactDOM from 'react-dom';
 import routes from './routes';
 
-React.render(routes, document.body);
+ReactDOM.render(routes, document.getElementById('edx-app'));
