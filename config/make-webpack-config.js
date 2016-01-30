@@ -47,6 +47,11 @@ module.exports = function (options) {
       extensions: ['', '.js', '.jsx', '.json'],
     },
     plugins: [
+      new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery'
+      }),
+      new webpack.PrefetchPlugin('jquery'),
       new webpack.PrefetchPlugin('react'),
       new webpack.PrefetchPlugin('jayphelps-react-router'),
       new webpack.PrefetchPlugin('react-css-modules'),
