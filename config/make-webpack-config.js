@@ -59,7 +59,17 @@ module.exports = function (options) {
         new ComponentResolverPlugin(['jsx', 'js', 'less', 'css'])
       ]),
       failPlugin
-    ]
+    ],
+    eslint: {
+      formatter: function (messages) {
+        return require('eslint/lib/formatters/stylish')(messages)
+          .split('\n')
+          .map(function (line) {
+            return 'eslint: ' + line;
+          })
+          .join('\n');
+      }
+    }
   };
 
   config.resolve.alias[packageJSON.name] = src;
