@@ -1,5 +1,7 @@
 # react-webpack-boilerplate
 
+**NOTE: As of now, this is used mostly internally by our team so it'll have some things like Semantic UI, etc that you might not want.**
+
 ## Prerequisites
 You must have node and npm installed, then install the webpack development server:
 
