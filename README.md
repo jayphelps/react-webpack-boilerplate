@@ -9,6 +9,12 @@ You must have node and npm installed, then install the webpack development serve
 $ npm install webpack-dev-server -g
 ```
 
+Then install the local dependencies
+
+```bash
+$ npm install
+```
+
 ## Dev build + livereload webserver
 ```bash
 $ npm start
